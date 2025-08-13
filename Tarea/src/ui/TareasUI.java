@@ -113,6 +113,15 @@ if (!fechaTexto.isEmpty()) {
 
     // Agregar a la lista en memoria
     listaTareas.agregarTarea(tarea);
+    
+    // Guardar en la base de datos
+dao.TareaDAO dao = new dao.TareaDAO();
+boolean guardado = dao.insertar(tarea);
+if (guardado) {
+    lblEstado.setText("✅ Tarea guardada en la base de datos.");
+} else {
+    lblEstado.setText("❌ No se pudo guardar en la base de datos. Revisa consola.");
+}
 
     // Mostrar en la tabla
     DefaultTableModel model = (DefaultTableModel) tblTareas.getModel();
